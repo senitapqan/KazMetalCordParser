@@ -62,6 +62,8 @@ def process_page(link, path, page):
         cell_with_link = row.find("td")
         link = URL_prefix + cell_with_link.find("a")["href"]
         data.append(process_element(link, file_path))
+
+    print("path with page done: ", file_path)
         
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
@@ -79,6 +81,8 @@ def process_pages(link, path):
     for page in range(1, int(max_page) + 1):
         page_link = link + "?page=" + str(page)
         process_page(page_link, path, page)
+
+    print("path done: ", path)
 
 def dfs(body, path):
     path_element = body.find("a").text.strip().replace(" ", "_")
@@ -101,6 +105,8 @@ def run(body):
     for category in all_categories:
         dfs(category, "Данные")
 
+
+    print("all links to tables: ", len(links_to_table))
     for (path, link) in links_to_table:
         process_pages(link, path)
 
