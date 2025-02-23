@@ -22,7 +22,7 @@ headers = {
 links_to_table = []
 
 # Batch size for async processing
-BATCH_SIZE = 150
+BATCH_SIZE = 50
 
 
 def get_or_create_file(path, file_name):
